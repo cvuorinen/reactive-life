@@ -1,4 +1,6 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular
-  .module('reactiveLifeApp', []);
+    angular
+        .module('app', []);
+})();
