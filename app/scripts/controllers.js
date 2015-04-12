@@ -5,9 +5,9 @@
         .module('app')
         .controller('MainCtrl', MainCtrl);
 
-    function MainCtrl() {
+    function MainCtrl(Game) {
         var vm = this;
 
-
+        vm.game = new Game(10, 5);
     }
 })();
