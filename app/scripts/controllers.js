@@ -8,6 +8,6 @@
     function MainCtrl(Game) {
         var vm = this;
 
-        vm.game = new Game(10, 5);
+        vm.game = new Game(20, 15);
     }
 })();
