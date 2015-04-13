@@ -2,8 +2,8 @@
     'use strict';
 
     /**
-     * @desc Conway's game of life
-     * @example <game-of-life game="vm.game"></game-of-life>
+     * @desc UI for a Conway's Game of Life implementation in Angular
+     * @example <game-of-life game="vm.game" click-cell="vm.clickCell(cell)"></game-of-life>
      */
     angular
         .module('gameOfLife')
@@ -14,6 +14,7 @@
             restrict: 'EA',
             scope: {
                 game: '=',
+                clickCell: '&'
             },
             templateUrl: 'views/game.html',
             link: link
@@ -23,11 +24,6 @@
 
         function link(scope, element, attrs) {
             assertValidGame();
-            initialize();
-
-            function initialize() {
-
-            }
 
             function assertValidGame() {
                 if (!scope.game || !(scope.game instanceof Game)) {
