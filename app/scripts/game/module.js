@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('gameOfLife', []);
+        .module('gameOfLife', ['rx']);
 })();
