@@ -3,3 +3,7 @@
 <div class="life-container"
      game-of-life game="vm.game"
      click-cell="vm.clickCell(cell)"></div>
+
+<span>Generation: {{ vm.game.generation }}</span>
+<button ng-click="vm.game.start()" ng-hide="vm.game.started">Start</button>
+<button ng-click="vm.game.pause()" ng-show="vm.game.started">Stop</button>

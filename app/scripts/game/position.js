@@ -11,6 +11,14 @@
             this.y = y;
         }
 
+        /**
+         * @param {Position} anotherPosition
+         * @returns {boolean}
+         */
+        position.prototype.equals = function (anotherPosition) {
+            return anotherPosition.x == this.x && anotherPosition.y == this.y;
+        }
+
         return position;
     }
 })();

@@ -8,7 +8,7 @@
     function MainCtrl($scope, Game) {
         var vm = this;
 
-        vm.game = new Game(20, 15);
+        vm.game = new Game(50, 30, 300, $scope);
 
         $scope.$createObservableFunction('toggleCell')
             .subscribe(function (cell) {
