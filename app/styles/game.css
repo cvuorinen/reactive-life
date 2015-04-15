@@ -16,8 +16,11 @@
 .game-container .game-row .game-cell {
     flex: 1;
     border: 1px solid #eee;
+    background-color: #fff;
+    transition: background-color .35s ease-in-out;
 }
 
 .game-container .game-row .game-cell.alive {
     background-color: #6592ff;
+    transition: background-color .25s ease-in-out;
 }
