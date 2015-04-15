@@ -34,14 +34,14 @@
             generationStream = generationStream.pausable();
             generationStream.pause();
 
-            generationStream.subscribe(updateGeneration);
+            generationStream.subscribe(nextGeneration);
 
             // Create a Subject stream for cells to broadcast when they update.
             // Subject allows for both publish and subscribe, so cells can also subscribe
             // to get notified about updates to neighbour cells.
             var updateBroadcastStream = new Rx.Subject();
 
-            this.cells = initCells(cols, rows);
+            this.cells = createCells(0, 0, []);
 
             this.start = function () {
                 self.started = true;
@@ -53,46 +53,37 @@
                 generationStream.pause();
             }
 
-            function updateGeneration() {
+            function nextGeneration() {
                 self.generation++;
             }
 
             /**
-             * @param {integer} colNum
-             * @param {integer} rowNum
+             * @param {integer} x
+             * @param {integer} y
+             * @param {Array}   cells
              * @returns {Array}
              */
-            function initCells(colNum, rowNum) {
-                var rows = [];
-
-                for (var y = 0; y < rowNum; y++) {
-                    rows.push(
-                        createCellRow(colNum, y)
-                    );
+            function createCells(x, y, cells) {
+                if (x == cols) {
+                    x = 0;
+                    y++;
                 }
 
-                return rows;
-            }
+                if (y == rows) {
+                    return cells;
+                }
 
-            /**
-             * @param {integer} colNum
-             * @param {integer} y
-             * @returns {Array}
-             */
-            function createCellRow(colNum, y) {
-                var cols = [];
-
-                for (var x = 0; x < colNum; x++) {
-                    var cell = new Cell(
+                cells.push(
+                    new Cell(
                         new Position(x, y),
                         generationStream,
                         updateBroadcastStream
-                    );
+                    )
+                );
 
-                    cols.push(cell);
-                }
+                x++;
 
-                return cols;
+                return createCells(x, y, cells);
             }
         }
 

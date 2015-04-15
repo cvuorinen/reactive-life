@@ -6,6 +6,10 @@
         .factory('Position', Position);
 
     function Position() {
+        /**
+         * @param {integer} x
+         * @param {integer} y
+         */
         var position = function(x, y) {
             this.x = x;
             this.y = y;

@@ -24,6 +24,15 @@
 
         function link(scope, element, attrs) {
             assertValidGame();
+            initialize();
+
+            function initialize() {
+                scope.cells = _.toArray(
+                    _.groupBy(scope.game.cells, function (cell) {
+                        return cell.position.y;
+                    })
+                );
+            }
 
             function assertValidGame() {
                 if (!scope.game || !(scope.game instanceof Game)) {
