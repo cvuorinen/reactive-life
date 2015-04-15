@@ -7,3 +7,7 @@
 <span>Generation: {{ vm.game.generation }}</span>
 <button ng-click="vm.game.start()" ng-hide="vm.game.started">Start</button>
 <button ng-click="vm.game.pause()" ng-show="vm.game.started">Stop</button>
+<button ng-click="vm.reset()">Reset</button>
+Load: <select ng-options="pattern for pattern in vm.availablePatterns"
+              ng-model="selectedPattern"
+              ng-change="vm.loadPattern(selectedPattern);"></select>

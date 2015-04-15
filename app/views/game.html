@@ -2,6 +2,7 @@
     <div ng-repeat="row in cells" class="game-row">
         <div ng-repeat="cell in row"
              class="game-cell"
+             data-coordinates="{{cell.position.x}},{{cell.position.y}}"
              ng-class="{'alive': cell.alive}"
              ng-click="clickCell({cell: cell})"></div>
     </div>
