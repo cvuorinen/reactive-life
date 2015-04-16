@@ -4,10 +4,27 @@
      game-of-life game="vm.game"
      click-cell="vm.clickCell(cell)"></div>
 
-<span>Generation: {{ vm.game.generation }}</span>
-<button ng-click="vm.game.start()" ng-hide="vm.game.started">Start</button>
-<button ng-click="vm.game.pause()" ng-show="vm.game.started">Stop</button>
-<button ng-click="vm.reset()">Reset</button>
-Load: <select ng-options="pattern for pattern in vm.availablePatterns"
-              ng-model="selectedPattern"
-              ng-change="vm.loadPattern(selectedPattern);"></select>
+<div class="controls pure-form">
+    <span>Generation: {{ vm.game.generation }}</span>
+    <button class="pure-button pure-button-primary"
+            ng-click="vm.game.start()"
+            ng-hide="vm.game.started">
+        Start
+    </button>
+    <button class="pure-button pure-button-primary"
+            ng-click="vm.game.pause()"
+            ng-show="vm.game.started">
+        Stop
+    </button>
+    <button class="pure-button"
+            ng-click="vm.reset()">
+        Reset
+    </button>
+    <label for="pattern">
+        Load pattern:
+    </label>
+    <select id="pattern"
+            ng-options="pattern for pattern in vm.availablePatterns"
+            ng-model="selectedPattern"
+            ng-change="vm.loadPattern(selectedPattern)"></select>
+</div>
