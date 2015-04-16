@@ -8,6 +8,6 @@ especially the reactive stuff I'm still learning about.
 
 ## TODO
 
-[] Angular2 and/or React version (to benchmark performance)
-[] Use ES6 and/or TypeScript
-[] Multiple colors for cells
+* Angular2 and/or React version (to benchmark performance)
+* Use ES6 and/or TypeScript
+* Multiple colors for cells
