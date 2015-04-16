@@ -5,13 +5,37 @@
         .module('app')
         .controller('MainCtrl', MainCtrl);
 
-    function MainCtrl($scope, Game, Patterns) {
+    function MainCtrl($scope, $location, Game, Patterns) {
         var vm = this;
 
-        vm.game = new Game(50, 30, 300, $scope);
+        var options = {
+            cols: 50,
+            rows: 30,
+            interval: 300
+        };
+        var urlParams = $location.search();
+
+        angular.extend(options, urlParams);
+
+        vm.game = new Game(
+            options.cols,
+            options.rows,
+            options.interval,
+            $scope
+        );
+
         vm.reset = _.partial(Patterns.reset, vm.game);
         vm.loadPattern = _.partial(Patterns.loadPattern, vm.game);
         vm.availablePatterns = Patterns.getAvailablePatterns();
+        vm.hideControls = urlParams.hideControls;
+
+        if (!!urlParams.pattern && _.includes(vm.availablePatterns, urlParams.pattern)) {
+            vm.loadPattern(urlParams.pattern);
+        }
+
+        if (!!urlParams.autostart) {
+            vm.game.start();
+        }
 
         $scope.$createObservableFunction('toggleCell')
             .subscribe(function (cell) {
