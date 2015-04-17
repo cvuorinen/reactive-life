@@ -10,7 +10,7 @@
          * @param {integer} x
          * @param {integer} y
          */
-        var position = function(x, y) {
+        var Position = function(x, y) {
             this.x = x;
             this.y = y;
         }
@@ -19,10 +19,10 @@
          * @param {Position} anotherPosition
          * @returns {boolean}
          */
-        position.prototype.equals = function (anotherPosition) {
+        Position.prototype.equals = function (anotherPosition) {
             return anotherPosition.x == this.x && anotherPosition.y == this.y;
         }
 
-        return position;
+        return Position;
     }
 })();
