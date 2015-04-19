@@ -15,10 +15,12 @@
             this.position = position;
             this.alive = false;
             this.generation;
+            this.color;
 
             var self = this;
             var liveNeighbours = [];
             var nextGenLiveNeighbours = [];
+            var defaultColor = '#69f';
 
             generationStream
                 .subscribe(updateCell);
@@ -75,7 +77,9 @@
                 if (shouldDie()) {
                     self.setDead();
                 } else if (shouldComeAlive()) {
-                    self.setAlive();
+                    self.setAlive(
+                        getDominantColor()
+                    );
                 }
 
                 liveNeighbours = _.clone(nextGenLiveNeighbours);
@@ -95,13 +99,38 @@
                 return !self.alive && liveNeighbours.length == 3;
             }
 
-            this.setAlive = function () {
+            /**
+             * @returns {String}
+             */
+            function getDominantColor() {
+                var dominantColors = _(liveNeighbours)
+                    .countBy('color')
+                    .invert()
+                    .groupBy(function (color, count) {
+                        return count;
+                    })
+                    .toArray()
+                    .last();
+
+                // randomize if more than one
+                return _(dominantColors)
+                    .shuffle()
+                    .first();
+            }
+
+            /**
+             * @param {String} color
+             */
+            this.setAlive = function (color) {
                 self.alive = true;
+                self.color = color || defaultColor;
+
                 updateBroadcastStream.onNext(self);
             }
 
             this.setDead = function () {
                 self.alive = false;
+
                 updateBroadcastStream.onNext(self);
             }
         }

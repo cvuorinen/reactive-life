@@ -4,6 +4,7 @@
              class="game-cell"
              data-coordinates="{{cell.position.x}},{{cell.position.y}}"
              ng-class="{'alive': cell.alive}"
+             ng-style="{'background-color': cell.alive ? cell.color : null}"
              ng-click="clickCell({cell: cell})"></div>
     </div>
 </div>

@@ -54,7 +54,7 @@
          * @param {Game}   game
          * @param {String} patternName
          */
-        function loadPattern(game, patternName) {
+        function loadPattern(game, patternName, color) {
             if (!patterns[patternName]) {
                 return;
             }
@@ -66,7 +66,7 @@
                         cell.position.x + ',' + cell.position.y
                     );
                 }).map(function (cell) {
-                    cell.setAlive();
+                    cell.setAlive(color);
                 })
                 .value();
         }

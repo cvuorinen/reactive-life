@@ -28,9 +28,10 @@
         vm.loadPattern = _.partial(Patterns.loadPattern, vm.game);
         vm.availablePatterns = Patterns.getAvailablePatterns();
         vm.hideControls = urlParams.hideControls;
+        vm.color = urlParams.color;
 
         if (!!urlParams.pattern && _.includes(vm.availablePatterns, urlParams.pattern)) {
-            vm.loadPattern(urlParams.pattern);
+            vm.loadPattern(urlParams.pattern, vm.color);
         }
 
         if (!!urlParams.autostart) {
