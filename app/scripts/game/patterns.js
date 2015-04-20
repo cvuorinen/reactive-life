@@ -53,8 +53,9 @@
          *
          * @param {Game}   game
          * @param {String} patternName
+         * @param {Array}  colors
          */
-        function loadPattern(game, patternName, color) {
+        function loadPattern(game, patternName, colors) {
             if (!patterns[patternName]) {
                 return;
             }
@@ -66,7 +67,9 @@
                         cell.position.x + ',' + cell.position.y
                     );
                 }).map(function (cell) {
-                    cell.setAlive(color);
+                    cell.setAlive(
+                        _.sample(colors)
+                    );
                 })
                 .value();
         }

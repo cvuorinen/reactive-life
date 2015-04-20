@@ -31,7 +31,13 @@
         vm.color = urlParams.color;
 
         if (!!urlParams.pattern && _.includes(vm.availablePatterns, urlParams.pattern)) {
-            vm.loadPattern(urlParams.pattern, vm.color);
+            var colors = [vm.color];
+
+            if (urlParams.color2) {
+                colors.push(urlParams.color2);
+            }
+
+            vm.loadPattern(urlParams.pattern, colors);
         }
 
         if (!!urlParams.autostart) {
@@ -43,7 +49,7 @@
                 if (cell.alive) {
                     cell.setDead();
                 } else {
-                    cell.setAlive();
+                    cell.setAlive(vm.color);
                 }
             });
 

@@ -30,5 +30,5 @@
     <select id="pattern"
             ng-options="pattern for pattern in vm.availablePatterns"
             ng-model="selectedPattern"
-            ng-change="vm.loadPattern(selectedPattern)"></select>
+            ng-change="vm.loadPattern(selectedPattern, [vm.color])"></select>
 </div>
