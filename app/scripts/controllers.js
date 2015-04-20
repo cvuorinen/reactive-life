@@ -27,8 +27,8 @@
         vm.reset = _.partial(Patterns.reset, vm.game);
         vm.loadPattern = _.partial(Patterns.loadPattern, vm.game);
         vm.availablePatterns = Patterns.getAvailablePatterns();
-        vm.hideControls = urlParams.hideControls;
         vm.noGrid = urlParams.noGrid;
+        vm.embedded = urlParams.embedded;
         vm.color = urlParams.color;
 
         if (!!urlParams.pattern && _.includes(vm.availablePatterns, urlParams.pattern)) {

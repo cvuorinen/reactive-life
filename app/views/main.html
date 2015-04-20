@@ -1,15 +1,15 @@
 <h1 class="title"
-    ng-hide="vm.hideControls">
+    ng-hide="vm.embedded">
     Reactive Game of Life
 </h1>
 
 <div class="life-container"
-     ng-class="{'no-grid': vm.noGrid}"
+     ng-class="{'no-grid': vm.noGrid, 'embedded': vm.embedded}"
      game-of-life game="vm.game"
      click-cell="vm.clickCell(cell)"></div>
 
 <div class="controls pure-form"
-     ng-hide="vm.hideControls">
+     ng-hide="vm.embedded">
     <span>Generation: {{ vm.game.generation }}</span>
     <button class="pure-button pure-button-primary"
             ng-click="vm.game.start()"

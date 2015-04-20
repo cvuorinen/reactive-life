@@ -1,18 +1,31 @@
-/* Space out content a bit */
+html {
+    height: 100%;
+}
 body {
     color: #444;
     font-family: "Droid Sans", sans-serif;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
 }
 
 h1.title {
     text-align: center;
+    margin: 0;
+    padding: 1em 0;
 }
 
 .life-container {
-    margin: 30px auto;
+    margin: 0 auto;
     width: 100%;
     max-width: 600px;
     height: 400px;
+}
+.life-container.embedded {
+    max-width: none;
+    height: 100%;
 }
 
 .controls {
