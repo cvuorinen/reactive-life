@@ -19,3 +19,6 @@
     background-color: #fff;
     transition: background-color .35s ease-in-out;
 }
+.no-grid .game-container .game-row .game-cell {
+    border: 1px solid #fff;
+}

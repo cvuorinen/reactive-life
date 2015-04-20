@@ -4,6 +4,7 @@
 </h1>
 
 <div class="life-container"
+     ng-class="{'no-grid': vm.noGrid}"
      game-of-life game="vm.game"
      click-cell="vm.clickCell(cell)"></div>
 
