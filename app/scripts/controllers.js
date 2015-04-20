@@ -27,10 +27,18 @@
         vm.reset = _.partial(Patterns.reset, vm.game);
         vm.loadPattern = _.partial(Patterns.loadPattern, vm.game);
         vm.availablePatterns = Patterns.getAvailablePatterns();
-        vm.hideControls = urlParams.hideControls;
+        vm.noGrid = urlParams.noGrid;
+        vm.embedded = urlParams.embedded;
+        vm.color = urlParams.color;
 
         if (!!urlParams.pattern && _.includes(vm.availablePatterns, urlParams.pattern)) {
-            vm.loadPattern(urlParams.pattern);
+            var colors = [vm.color];
+
+            if (urlParams.color2) {
+                colors.push(urlParams.color2);
+            }
+
+            vm.loadPattern(urlParams.pattern, colors);
         }
 
         if (!!urlParams.autostart) {
@@ -42,7 +50,7 @@
                 if (cell.alive) {
                     cell.setDead();
                 } else {
-                    cell.setAlive();
+                    cell.setAlive(vm.color);
                 }
             });
 
