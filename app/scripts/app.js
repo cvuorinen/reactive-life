@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('app', ['gameOfLife']);
+        .module('app', ['gameOfLife', 'angularSpectrumColorpicker']);
 })();
