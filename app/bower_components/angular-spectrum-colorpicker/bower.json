@@ -1,0 +1,48 @@
+{
+  "name": "angular-spectrum-colorpicker",
+  "version": "1.3.5",
+  "authors": [
+    "Jimdo GmbH",
+    "Joscha Feth <joscha@feth.com>",
+    "Hannes Diercks <hannes.diercks@jimdo.com>",
+    "Hendrike Heydenreich <hendrike@jimdo.com>",
+    "luto <m@luto.at>",
+    "Hauke Stange <hauke@jimdo.com>",
+    "asilberschneider <asilberschneider@users.noreply.github.com>",
+    "Erik Dykema <erik@caserails.com>",
+    "Elan Perach <elanperach@gmail.com>",
+    "Lasse Diercks <lasse@jimdo.com>",
+    "Matthew Davies <daviesgeek@users.noreply.github.com>",
+    "Denis Dervisevic <dervisevic@textalk.se>"
+  ],
+  "description": "Angular directive for a colorpicker, that bases on the spectrum colorpicker",
+  "main": "dist/angular-spectrum-colorpicker.min.js",
+  "keywords": [
+    "directive",
+    "colorpicker",
+    "angular"
+  ],
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "angular": "^1.2.21",
+    "angular-mocks": "^1.2.21",
+    "jquery": "~2.1.1",
+    "jasmine-moar-matchers": "~0.0.2"
+  },
+  "dependencies": {
+    "spectrum": "1.6.0",
+    "angular": "^1.2.8"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tasks",
+    "demo",
+    "src",
+    "Gruntfile.js",
+    "package.json"
+  ]
+}

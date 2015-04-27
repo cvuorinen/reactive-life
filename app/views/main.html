@@ -26,10 +26,16 @@
         Reset
     </button>
     <label for="pattern">
-        Load pattern:
+        Pattern:
     </label>
     <select id="pattern"
             ng-options="pattern for pattern in vm.availablePatterns"
             ng-model="selectedPattern"
             ng-change="vm.loadPattern(selectedPattern, [vm.color])"></select>
+    <label>
+        Color:
+    </label>
+    <spectrum-colorpicker ng-model="vm.color"
+                          options="vm.spectrumOptions">
+    </spectrum-colorpicker>
 </div>
