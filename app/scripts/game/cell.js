@@ -5,6 +5,10 @@
         .module('gameOfLife')
         .factory('Cell', Cell);
 
+    /**
+     * Class that represents one cell in a Game of Life. Holds all the game logic, listens to it's neighbours and
+     * updates itself on each game "generation" according to the rules.
+     */
     function Cell(Position) {
         /**
          * @param {Position} position

@@ -5,6 +5,9 @@
         .module('gameOfLife')
         .factory('Patterns', Patterns);
 
+    /**
+     * Utility service used to load predefined patterns to the Game of Life
+     */
     function Patterns(Position) {
         var patterns = {
             'Glider': ['3,4', '4,4', '5,4', '5,3', '4,2'],
