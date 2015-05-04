@@ -12,4 +12,3 @@ Here is a live demo: http://cvuorinen.github.io/reactive-life/
 
 * Angular2 and/or React version (to benchmark performance)
 * Use ES6 and/or TypeScript
-* Multiple colors for cells

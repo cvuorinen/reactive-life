@@ -5,6 +5,9 @@
         .module('gameOfLife')
         .factory('Game', Game);
 
+    /**
+     * An implementation of Conway's Game of Life using reactive programming
+     */
     function Game(Cell, Position) {
         /**
          * @param {integer} cols

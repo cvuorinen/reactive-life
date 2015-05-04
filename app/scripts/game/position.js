@@ -5,6 +5,9 @@
         .module('gameOfLife')
         .factory('Position', Position);
 
+    /**
+     * Class that represents a position in a grid
+     */
     function Position() {
         /**
          * @param {integer} x
