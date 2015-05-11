@@ -53,22 +53,20 @@
              * @param {Cell} neighbourCell
              */
             function updateNeighbour(neighbourCell) {
-                if (neighbourCell.alive) {
-                    if (neighbourCell.generation == self.generation) {
-                        liveNeighbours.push(neighbourCell);
-                    }
+                if (neighbourCell.generation == self.generation) {
+                    updateNeighbourInArray(neighbourCell, liveNeighbours);
+                }
 
-                    nextGenLiveNeighbours.push(neighbourCell);
-                } else {
-                    if (neighbourCell.generation == self.generation) {
-                        _.remove(liveNeighbours, function (curCell) {
+                updateNeighbourInArray(neighbourCell, nextGenLiveNeighbours);
+
+                function updateNeighbourInArray(neighbourCell, neighbourCellArray) {
+                    if (neighbourCell.alive) {
+                        neighbourCellArray.push(neighbourCell);
+                    } else {
+                        _.remove(neighbourCellArray, function (curCell) {
                             return curCell.position.equals(neighbourCell.position);
                         });
                     }
-
-                    _.remove(nextGenLiveNeighbours, function (curCell) {
-                        return curCell.position.equals(neighbourCell.position);
-                    });
                 }
             }
 
