@@ -1,0 +1,8 @@
+{
+  "name": "reactive-life-angular2",
+  "version": "0.0.0",
+  "dependencies": {
+    "traceur-runtime": "~0.0.90",
+    "rxjs": "~2.5.2"
+  }
+}
