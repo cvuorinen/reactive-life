@@ -1,0 +1,9 @@
+<div class="game-container">
+    <div *ng-for="#row of cells" class="game-row">
+        <div *ng-for="#cell of row"
+             class="game-cell"
+             [class]="{'alive': cell.alive}"
+             [style.background-color]="cell.alive ? cell.color : 'white'"
+             (click)="clickCell(cell)"></div>
+    </div>
+</div>

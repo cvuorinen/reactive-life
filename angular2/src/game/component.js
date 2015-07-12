@@ -1,4 +1,3 @@
-/// <reference path="typings/angular2/angular2.d.ts" />
 if (typeof __decorate !== "function") __decorate = function (decorators, target, key, desc) {
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
     switch (arguments.length) {
@@ -11,20 +10,36 @@ if (typeof __metadata !== "function") __metadata = function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var angular2_1 = require('angular2/angular2');
-// Annotation section
-var MyAppComponent = (function () {
-    function MyAppComponent() {
-        this.name = 'Alice';
+var game_1 = require('game/game');
+var cell_1 = require('game/cell');
+var GameComponent = (function () {
+    function GameComponent() {
+        this.game = new game_1.Game(3, 4, 300);
+        this.cells = this.groupCellsByRow(this.game.cells);
     }
-    MyAppComponent = __decorate([
+    GameComponent.prototype.clickCell = function (cell) {
+        if (cell.alive) {
+            cell.setDead();
+        }
+        else {
+            cell.setAlive(cell_1.Cell.defaultColor);
+        }
+    };
+    GameComponent.prototype.groupCellsByRow = function (cells) {
+        return _.toArray(_.groupBy(cells, function (cell) {
+            return cell.position.y;
+        }));
+    };
+    GameComponent = __decorate([
         angular2_1.Component({
-            selector: 'my-app'
+            selector: 'game-of-life'
         }),
         angular2_1.View({
-            template: '<h1>Hello {{ name }}</h1>'
+            templateUrl: 'src/game/game.html',
+            directives: [angular2_1.NgFor, angular2_1.CSSClass]
         }), 
         __metadata('design:paramtypes', [])
-    ], MyAppComponent);
-    return MyAppComponent;
+    ], GameComponent);
+    return GameComponent;
 })();
-angular2_1.bootstrap(MyAppComponent);
+exports.GameComponent = GameComponent;

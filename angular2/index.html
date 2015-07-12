@@ -1,16 +1,29 @@
 <html>
 <head>
-    <title>Angular 2 Quickstart</title>
+    <title>Reactive Game of Life - Angular 2 version</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/game.css">
+
     <script src="bower_components/traceur-runtime/traceur-runtime.min.js"></script>
     <script src="lib/system@0.16.11.js"></script>
     <script src="lib/angular2.dev.js"></script>
-    <script src="bower_components/rxjs/dist/rx.min.js"></script>
+    <script src="bower_components/rxjs/dist/rx.all.min.js"></script>
+    <script src="bower_components/lodash/lodash.min.js"></script>
 </head>
 <body>
 
 <!-- The app component created in app.ts -->
-<my-app></my-app>
-<script>System.import('app');</script>
+<div class="container">
+    <app></app>
+</div>
+
+<script>
+    System.config({
+        baseURL: 'src'
+    });
+    System.import('app');
+</script>
 
 </body>
 </html>

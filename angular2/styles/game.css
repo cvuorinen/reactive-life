@@ -1,0 +1,24 @@
+.game-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.game-container .game-row {
+    flex: 1;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.game-container .game-row .game-cell {
+    flex: 1;
+    border: 1px solid #eee;
+    background-color: #fff;
+    transition: background-color .35s ease-in-out;
+}
+.no-grid .game-container .game-row .game-cell {
+    border: 1px solid #fff;
+}
