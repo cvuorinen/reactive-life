@@ -14,9 +14,21 @@ var game_1 = require('game/game');
 var cell_1 = require('game/cell');
 var GameComponent = (function () {
     function GameComponent() {
-        this.game = new game_1.Game(3, 4, 300);
+        this.embedded = false;
+        this.defaultOptions = {
+            cols: 50,
+            rows: 30,
+            interval: 300
+        };
+        this.game = new game_1.Game(this.defaultOptions.cols, this.defaultOptions.rows, this.defaultOptions.interval);
         this.cells = this.groupCellsByRow(this.game.cells);
     }
+    GameComponent.prototype.reset = function () {
+        _(this.game.cells)
+            .filter(function (cell) { return cell.alive; })
+            .map(function (cell) { return cell.setDead(); })
+            .value();
+    };
     GameComponent.prototype.clickCell = function (cell) {
         if (cell.alive) {
             cell.setDead();
@@ -26,9 +38,8 @@ var GameComponent = (function () {
         }
     };
     GameComponent.prototype.groupCellsByRow = function (cells) {
-        return _.toArray(_.groupBy(cells, function (cell) {
-            return cell.position.y;
-        }));
+        var groupedCells = _.groupBy(cells, function (cell) { return cell.position.y; });
+        return _.toArray(groupedCells);
     };
     GameComponent = __decorate([
         angular2_1.Component({
@@ -36,7 +47,7 @@ var GameComponent = (function () {
         }),
         angular2_1.View({
             templateUrl: 'src/game/game.html',
-            directives: [angular2_1.NgFor, angular2_1.CSSClass]
+            directives: [angular2_1.NgFor, angular2_1.NgIf, angular2_1.CSSClass]
         }), 
         __metadata('design:paramtypes', [])
     ], GameComponent);

@@ -1,5 +1,5 @@
 /// <reference path="../../typings/rx/rx.all.d.ts" />
-//import {Rx} from 'rx';
+//import {Rx} from 'rx.all';
 /**
  * Class that represents one cell in a Game of Life. Holds all the game logic, listens to it's neighbours and
  * updates itself on each game "generation" according to the rules.

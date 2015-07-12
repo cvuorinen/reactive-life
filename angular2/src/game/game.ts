@@ -9,22 +9,16 @@ import {Position} from 'game/position';
  */
 export class Game {
     public cells: Array<Cell>;
+    public generation: number = 0;
 
-    private generation: number = 0;
     private started: boolean = false;
     private generationStream: Rx.PausableObservable;
     private updateBroadcastStream: Rx.Subject;
 
-    constructor(private cols: number, private rows: number, private interval: number) {
-        /*this.generation = 0;
-        this.started = false;*/
-console.debug("Game.constructor", Rx.Observable);
+    constructor(private cols: number, private rows: number, interval: number) {
         // Create a stream that "ticks" every interval to trigger a new "generation" in the game
         let generation = Rx.Observable
-            .interval(interval)
-            /*.safeApply(scope, function () {
-                // just to trigger Angular digest cycle on each interval
-            })*/;
+            .interval(interval);
 
         // Publish to be able to broadcast a single stream to multiple subscribers
         let generationStream = generation
@@ -35,7 +29,8 @@ console.debug("Game.constructor", Rx.Observable);
         this.generationStream = generationStream.pausable();
         this.generationStream.pause();
 
-        this.generationStream.subscribe(this.nextGeneration);
+        this.generationStream
+            .subscribe(_ => this.nextGeneration());
 
         // Create a Subject stream for cells to broadcast when they update.
         // Subject allows for both publish and subscribe, so cells can also subscribe
@@ -43,7 +38,6 @@ console.debug("Game.constructor", Rx.Observable);
         this.updateBroadcastStream = new Rx.Subject();
 
         this.cells = this.createCells(0, 0, []);
-        console.debug("cells", this.cells);
     }
 
     public start() {

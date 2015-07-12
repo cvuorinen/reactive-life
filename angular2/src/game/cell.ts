@@ -1,5 +1,5 @@
 /// <reference path="../../typings/rx/rx.all.d.ts" />
-//import {Rx} from 'rx';
+//import {Rx} from 'rx.all';
 
 import {Position} from 'game/position';
 
