@@ -1,14 +1,15 @@
 <h1 class="title"
-    *ng-if="!embedded">
+    *ng-if="!options.embedded">
     Reactive Game of Life
 </h1>
 
-<div class="life-container">
+<div class="life-container"
+     [class]="{'no-grid': options.noGrid, 'embedded': options.embedded}">
     <div class="game-container">
         <div *ng-for="#row of cells" class="game-row">
             <div *ng-for="#cell of row"
                  class="game-cell"
-                 [class]="{'alive': cell.alive}"
+                 [class]="{'alive': cell.alive, 'fade': !options.noFade}"
                  [style.background-color]="cell.alive ? cell.color : 'white'"
                  (click)="clickCell(cell)"></div>
         </div>
@@ -16,7 +17,7 @@
 </div>
 
 <div class="controls pure-form"
-     *ng-if="!embedded">
+     *ng-if="!options.embedded">
     <span>Generation: {{ game.generation }}</span>
     <button class="pure-button pure-button-primary"
             (click)="game.start()"

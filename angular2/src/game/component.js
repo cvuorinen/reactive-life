@@ -15,13 +15,22 @@ var cell_1 = require('game/cell');
 var patterns_1 = require('game/patterns');
 var GameComponent = (function () {
     function GameComponent() {
-        this.embedded = false;
-        this.defaultOptions = {
+        this.options = {
+            embedded: false,
+            noGrid: false,
+            noFade: false,
+            color: cell_1.Cell.defaultColor
+        };
+        this.defaultParams = {
             cols: 50,
             rows: 30,
             interval: 300
         };
-        this.game = new game_1.Game(this.defaultOptions.cols, this.defaultOptions.rows, this.defaultOptions.interval);
+        var interval = this.defaultParams.interval;
+        this.game = new game_1.Game(this.defaultParams.cols, this.defaultParams.rows, interval);
+        if (interval < 300) {
+            this.options.noFade = true;
+        }
         this.cells = this.groupCellsByRow(this.game.cells);
         this.availablePatterns = patterns_1.Patterns.getAvailablePatterns();
     }

@@ -13,22 +13,33 @@ import {Patterns} from 'game/patterns';
 })
 export class GameComponent {
     public cells: Array<Array<Cell>>;
-    public embedded: boolean = false;
+    public options = {
+        embedded: false,
+        noGrid: false,
+        noFade: false,
+        color: Cell.defaultColor
+    };
     public game: Game;
     public availablePatterns: Array<string>;
 
-    private defaultOptions = {
+    private defaultParams = {
         cols: 50,
         rows: 30,
         interval: 300
     };
 
     constructor() {
+        let interval = this.defaultParams.interval;
+
         this.game = new Game(
-            this.defaultOptions.cols,
-            this.defaultOptions.rows,
-            this.defaultOptions.interval
+            this.defaultParams.cols,
+            this.defaultParams.rows,
+            interval
         );
+
+        if (interval < 300) {
+            this.options.noFade = true;
+        }
 
         this.cells = this.groupCellsByRow(this.game.cells);
 
