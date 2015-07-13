@@ -12,6 +12,7 @@ if (typeof __metadata !== "function") __metadata = function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var game_1 = require('game/game');
 var cell_1 = require('game/cell');
+var patterns_1 = require('game/patterns');
 var GameComponent = (function () {
     function GameComponent() {
         this.embedded = false;
@@ -22,6 +23,7 @@ var GameComponent = (function () {
         };
         this.game = new game_1.Game(this.defaultOptions.cols, this.defaultOptions.rows, this.defaultOptions.interval);
         this.cells = this.groupCellsByRow(this.game.cells);
+        this.availablePatterns = patterns_1.Patterns.getAvailablePatterns();
     }
     GameComponent.prototype.reset = function () {
         _(this.game.cells)
@@ -36,6 +38,9 @@ var GameComponent = (function () {
         else {
             cell.setAlive(cell_1.Cell.defaultColor);
         }
+    };
+    GameComponent.prototype.loadPattern = function (pattern) {
+        patterns_1.Patterns.loadPattern(this.game, pattern, [cell_1.Cell.defaultColor]);
     };
     GameComponent.prototype.groupCellsByRow = function (cells) {
         var groupedCells = _.groupBy(cells, function (cell) { return cell.position.y; });

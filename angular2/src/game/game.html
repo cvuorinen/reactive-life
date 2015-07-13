@@ -32,17 +32,19 @@
             (click)="reset()">
         Reset
     </button>
-<!--    <label for="pattern">
+    <label for="pattern">
         Pattern:
     </label>
-    <select id="pattern"
-            ng-options="pattern for pattern in vm.availablePatterns"
-            ng-model="selectedPattern"
-            ng-change="vm.loadPattern(selectedPattern, [vm.color])"></select>
-    <label>
-        Color:
-    </label>
-    <spectrum-colorpicker ng-model="vm.color"
-                          options="vm.spectrumOptions">
-    </spectrum-colorpicker>-->
+    <select #selectedpattern
+            (change)="loadPattern(selectedpattern.value)">
+            <!--(change)="loadPattern(selectedPattern.value, [vm.color])">-->
+        <option value=""></option>
+        <option *ng-for="#pattern of availablePatterns" [value]="pattern">{{ pattern }}</option>
+    </select>
+    <!--    <label>
+            Color:
+        </label>
+        <spectrum-colorpicker ng-model="vm.color"
+                              options="vm.spectrumOptions">
+        </spectrum-colorpicker>-->
 </div>

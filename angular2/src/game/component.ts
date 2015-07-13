@@ -2,6 +2,7 @@ import {Component, View, NgFor, NgIf, CSSClass} from 'angular2/angular2';
 
 import {Game} from 'game/game';
 import {Cell} from 'game/cell';
+import {Patterns} from 'game/patterns';
 
 @Component({
     selector: 'game-of-life'
@@ -14,6 +15,7 @@ export class GameComponent {
     public cells: Array<Array<Cell>>;
     public embedded: boolean = false;
     public game: Game;
+    public availablePatterns: Array<string>;
 
     private defaultOptions = {
         cols: 50,
@@ -29,6 +31,8 @@ export class GameComponent {
         );
 
         this.cells = this.groupCellsByRow(this.game.cells);
+
+        this.availablePatterns = Patterns.getAvailablePatterns();
     }
 
     public reset() {
@@ -44,6 +48,10 @@ export class GameComponent {
         } else {
             cell.setAlive(Cell.defaultColor);
         }
+    }
+
+    public loadPattern(pattern: string) {
+        Patterns.loadPattern(this.game, pattern, [Cell.defaultColor]);
     }
 
     private groupCellsByRow(cells: Array<Cell>): Array<Array<Cell>> {
