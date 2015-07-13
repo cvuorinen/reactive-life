@@ -28,9 +28,14 @@
         vm.loadPattern = _.partial(Patterns.loadPattern, vm.game);
         vm.availablePatterns = Patterns.getAvailablePatterns();
         vm.noGrid = urlParams.noGrid;
+        vm.noFade = urlParams.noFade;
         vm.embedded = urlParams.embedded;
         vm.color = urlParams.color || '#69f';
         vm.spectrumOptions = getSpectrumOptions();
+
+        if (options.interval < 300) {
+            vm.noFade = true;
+        }
 
         if (!!urlParams.pattern && _.includes(vm.availablePatterns, urlParams.pattern)) {
             var colors = [vm.color];
