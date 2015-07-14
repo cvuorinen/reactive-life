@@ -17,6 +17,8 @@
     flex: 1;
     border: 1px solid #eee;
     background-color: #fff;
+}
+.fade .game-container .game-row .game-cell {
     transition: background-color .35s ease-in-out;
 }
 .no-grid .game-container .game-row .game-cell {

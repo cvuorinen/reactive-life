@@ -1,0 +1,44 @@
+html {
+    height: 100%;
+}
+body {
+    color: #444;
+    font-family: "Droid Sans", sans-serif;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+h1.title {
+    text-align: center;
+    margin: 0;
+    padding: 1em 0;
+}
+
+.life-container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+}
+.life-container.embedded {
+    max-width: none;
+    height: 100%;
+}
+
+.controls {
+    margin: 30px auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Customize Spectrum color picker styles to be more inline with other styles */
+.sp-replacer {
+    padding: 6px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px #ddd;
+}
