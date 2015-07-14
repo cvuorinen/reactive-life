@@ -72,20 +72,16 @@ var Cell = (function () {
         return !this.alive && this.liveNeighbours.length == 3;
     };
     Cell.prototype.getDominantColor = function () {
-        return Cell.defaultColor;
-        /*let dominantColors = _(this.liveNeighbours)
+        var dominantColors = _(this.liveNeighbours)
             .countBy('color')
             .invert()
             .groupBy(function (color, count) {
-                return count;
-            })
+            return count;
+        })
             .toArray()
             .last();
-
         // randomize if more than one
-        return _(dominantColors)
-            .shuffle()
-            .first();*/
+        return _.sample(dominantColors);
     };
     Cell.defaultColor = '#69f';
     return Cell;

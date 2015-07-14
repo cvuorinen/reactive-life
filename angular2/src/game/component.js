@@ -26,13 +26,25 @@ var GameComponent = (function () {
             rows: 30,
             interval: 300
         };
-        var interval = this.defaultParams.interval;
-        this.game = new game_1.Game(this.defaultParams.cols, this.defaultParams.rows, interval);
-        if (interval < 300) {
-            this.options.noFade = true;
-        }
+        var urlParams = this.getUrlParams();
+        var params = _.defaults(_.pick(urlParams, ['cols', 'rows', 'interval']), this.defaultParams);
+        this.game = new game_1.Game(params.cols, params.rows, params.interval);
         this.cells = this.groupCellsByRow(this.game.cells);
         this.availablePatterns = patterns_1.Patterns.getAvailablePatterns();
+        this.options = _.defaults(_.pick(urlParams, ['embedded', 'noGrid', 'noFade', 'color']), this.options);
+        if (params.interval < 300) {
+            this.options.noFade = true;
+        }
+        if (!!urlParams.pattern && _.contains(this.availablePatterns, urlParams.pattern)) {
+            var colors = [this.options.color];
+            if (urlParams.color2) {
+                colors.push(urlParams.color2);
+            }
+            this.loadPattern(urlParams.pattern, colors);
+        }
+        if (!!urlParams.autostart) {
+            this.game.start();
+        }
     }
     GameComponent.prototype.reset = function () {
         _(this.game.cells)
@@ -48,12 +60,24 @@ var GameComponent = (function () {
             cell.setAlive(cell_1.Cell.defaultColor);
         }
     };
-    GameComponent.prototype.loadPattern = function (pattern) {
-        patterns_1.Patterns.loadPattern(this.game, pattern, [cell_1.Cell.defaultColor]);
+    GameComponent.prototype.loadPattern = function (pattern, color) {
+        patterns_1.Patterns.loadPattern(this.game, pattern, color);
     };
     GameComponent.prototype.groupCellsByRow = function (cells) {
         var groupedCells = _.groupBy(cells, function (cell) { return cell.position.y; });
         return _.toArray(groupedCells);
+    };
+    GameComponent.prototype.getUrlParams = function () {
+        var queryString = location.search.length
+            ? location.search.substr(1)
+            : location.hash.split("?")[1];
+        return _(queryString.split("&"))
+            .groupBy(function (item) { return item.split("=")[0]; })
+            .mapValues(function (values) { return decodeURIComponent(values[0].split("=")[1]); })
+            .mapValues(function (value) { return value.replace("+", " "); })
+            .mapValues(function (value) { return value == 'true' ? true : value; })
+            .mapValues(function (value) { return value == 'false' ? false : value; })
+            .value();
     };
     GameComponent = __decorate([
         angular2_1.Component({

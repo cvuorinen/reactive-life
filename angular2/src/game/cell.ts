@@ -100,8 +100,7 @@ export class Cell {
     }
 
     private getDominantColor(): string {
-        return Cell.defaultColor;
-        /*let dominantColors = _(this.liveNeighbours)
+        let dominantColors = _(this.liveNeighbours)
             .countBy('color')
             .invert()
             .groupBy(function (color, count) {
@@ -111,8 +110,6 @@ export class Cell {
             .last();
 
         // randomize if more than one
-        return _(dominantColors)
-            .shuffle()
-            .first();*/
+        return _.sample(dominantColors);
     }
 }

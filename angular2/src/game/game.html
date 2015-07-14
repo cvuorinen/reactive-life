@@ -37,8 +37,7 @@
         Pattern:
     </label>
     <select #selectedpattern
-            (change)="loadPattern(selectedpattern.value)">
-            <!--(change)="loadPattern(selectedPattern.value, [vm.color])">-->
+            (change)="loadPattern(selectedpattern.value, [options.color])">
         <option value=""></option>
         <option *ng-for="#pattern of availablePatterns" [value]="pattern">{{ pattern }}</option>
     </select>
