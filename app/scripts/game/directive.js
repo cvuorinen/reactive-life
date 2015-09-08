@@ -9,7 +9,7 @@
         .module('gameOfLife')
         .directive('gameOfLife', gameOfLife);
 
-    function gameOfLife(Game) {
+    function gameOfLife($location, Game) {
         var directive = {
             restrict: 'EA',
             scope: {
@@ -25,6 +25,15 @@
         function link(scope, element, attrs) {
             assertValidGame();
             initialize();
+
+            var watchCountElement = $(element).find('#watchcount');
+            var urlParams = $location.search();
+            if (urlParams.counter) {
+                scope.$watch(function () {
+                    watchCountElement.html('$digest iterations: ' + scope.$root.$$counters.digest
+                        + '<br>$watches called: ' + scope.$root.$$counters.watch);
+                });
+            }
 
             function initialize() {
                 scope.cells = _.toArray(
