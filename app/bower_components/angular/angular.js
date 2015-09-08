@@ -11536,6 +11536,7 @@ function $RootScopeProvider(){
       this.$$listeners = {};
       this.$$listenerCount = {};
       this.$$isolateBindings = {};
+        this.$$counters = {digest: 0, watch: 0};
     }
 
     /**
@@ -11997,6 +11998,7 @@ function $RootScopeProvider(){
         do { // "while dirty" loop
           dirty = false;
           current = target;
+            current.$root.$$counters.digest++;
 
           while(asyncQueue.length) {
             try {
@@ -12020,6 +12022,7 @@ function $RootScopeProvider(){
                   // Most common watches are on primitives, in which case we can short
                   // circuit it with === operator, only when === fails do we use .equals
                   if (watch) {
+                      current.$root.$$counters.watch++;
                     if ((value = watch.get(current)) !== (last = watch.last) &&
                         !(watch.eq
                             ? equals(value, last)
